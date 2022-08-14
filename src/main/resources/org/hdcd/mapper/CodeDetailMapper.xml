@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.hdcd.mapper.CodeDetailMapper">
+	
+	<insert id="create" >
+		insert into code_detail (
+			group_code
+			, code_value
+			, code_name
+			, sort_seq) 
+		values (
+			#{groupCode}
+			, #{codeValue}
+			, #{codeName}
+			, #{sortSeq}
+			)
+	</insert>
+	
+	
+	
+	<select id="read" resultType="CodeDetail" >
+		select 
+			group_code
+			,code_value
+			,code_name
+			,sort_seq
+			,use_yn
+			,reg_date
+		from code_detail
+		where group_code = #{groupCode}
+		and code_value = #{codeValue}
+			
+	</select>
+	
+	
+	<update id="update" >
+		update code_detail
+		set code_name = #{codeName}
+		where group_code = #{groupCode}
+		and code_value = #{codeValue}
+	</update>
+	
+	
+	
+	<delete id="delete" >
+		delete from code_detail
+		where group_code = #{groupCode}
+		and code_value = #{codeValue}
+	</delete>
+	
+	
+	<select id="list" resultType="CodeDetail" >
+		select 
+			group_code
+			,code_value
+			,code_name
+			,sort_seq
+			,use_yn
+			,reg_date
+		from code_detail
+		order by group_code asc, sort_seq asc
+	</select>
+	
+	
+	<select id="getMaxSortSeq" resultType="int" >
+		select ifnull(max(sort_seq),0)
+		from code_detail
+		where group_code = #{groupCode}
+	</select>
+	
+	
+	
+</mapper>

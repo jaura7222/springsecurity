@@ -1,0 +1,24 @@
+<html xmlns="http://www.thymeleaf.org" >
+
+<body>
+	<div align="right" th:fragment="header" >
+		<table>
+			
+			<tr sec:authorize="!isAuthenticated()" >
+				<td width="80" ><a href="/user/register" th:text="#{header.joinMember}" >회원가입</a>
+				<td width="80" ><a href="/auth/login" th:text="#{header.login}" >로그인</a>
+			</tr>
+			
+			<tr sec:authorize="isAuthenticated()" >
+				<td width="180" >
+					<form action="../auth/loginForm.html" th:action="@{/logout}" method="POST" >
+						<span sec:authentication="principal.username">홍길동</span>님
+						<button th:text="#{action.logout}" >로그아웃</button>
+					</form>
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+</body>
+</html>

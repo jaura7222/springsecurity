@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.hdcd.mapper.NoticeMapper">
+	
+	<insert id="create" >
+		insert into notice (
+			title
+			, content
+			) 
+		values (
+			#{title}
+			, #{content}
+			)
+	</insert>
+	
+	
+	
+	<select id="read" resultType="Notice" >
+		select 
+			notice_no
+			,title
+			,content
+			,reg_date
+		from notice
+		where notice_no = #{noticeNo}
+	</select>
+	
+	
+	<update id="update" >
+		update notice
+		set title = #{title}
+		,content = #{content}
+		where notice_no = #{noticeNo}
+	</update>
+	
+	
+	
+	<delete id="delete" >
+		delete from notice
+		where notice_no = #{noticeNo}
+	</delete>
+	
+	
+	<select id="list" resultType="Notice" >
+	<![CDATA[
+		select 
+			 notice_no
+			,title
+			,content
+			,reg_date
+		from notice
+		where notice_no > 0
+		order by notice_no desc, reg_date desc
+		
+	]]>
+	</select>
+	
+	
+	
+	
+	
+</mapper>

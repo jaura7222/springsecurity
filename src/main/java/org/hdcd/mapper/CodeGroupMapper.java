@@ -1,0 +1,19 @@
+package org.hdcd.mapper;
+
+import java.util.List;
+
+import org.hdcd.domain.CodeGroup;
+
+public interface CodeGroupMapper {
+	
+	public void create(CodeGroup codeGroup) throws Exception;
+	
+	public List<CodeGroup> list() throws Exception;
+	
+	public CodeGroup read(String groupCode) throws Exception;
+	
+	public void modify(CodeGroup codeGroup) throws Exception;
+	
+	public void remove(String groupCode) throws Exception;
+
+}
